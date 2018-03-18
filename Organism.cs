@@ -17,10 +17,15 @@ public class Organism
         return shape;
     }
 
-    static double GetMatchIndex(Organism org, int[] terrain)
+    static int GetMatchIndex(Organism org, int[] terrain)
     {
-        var factor = org.GetMatchData(terrain).Average() / (double)maxHeight;
-        return Math.Abs(1 - factor) * 10000.0;
+        int diff = 0;
+        var data = org.GetMatchData(terrain);
+        for (int i = 0; i < data.Length; i++)
+        {
+            diff += Math.Abs(maxHeight - data[i]);
+        }
+        return diff;
     }
 
     int[] shape;

@@ -19,7 +19,7 @@ namespace evolution
                 Reshape(newShape);
                 i++;
                 var clone = new Organism(newShape);
-                if(Math.Abs(clone.GetMatchIndex(terrain))>Math.Abs(matchIndex))
+                if(clone.GetMatchIndex(terrain)>matchIndex)
                 {
                     Console.WriteLine("Rejected");
                     org.Shape = origShape;
@@ -30,12 +30,12 @@ namespace evolution
                     var matchData = org.GetMatchData(terrain);
                     foreach (var item in matchData)
                     {
-                        //Console.Write("{0},", item);
+                        Console.Write("{0},", item);
                     }
                     Console.WriteLine();
                 }
             }
-            while(org.GetMatchIndex(terrain) > 1e-10);
+            while(org.GetMatchIndex(terrain) > 5);
 
             Console.WriteLine("{0} attempts, {1} rejections", i, j);
         }
